@@ -1,43 +1,43 @@
-# REHAMED - System Zarządzania Rezerwacjami dla Oddziału Szpitalnego
+# REHAMED - Reservation Management System for Hospital Unit
 
-System do zarządzania wizytami, harmonogramami lekarzy, płatnościami i dokumentacją medyczną w klinice fizjoterapii. Zbudowany w Laravel 12 z interaktywnym kalendarzem, czatem wewnętrznym i integracją Stripe.
+A management system for appointments, doctor schedules, payments, and medical documentation in a physiotherapy clinic. Built with Laravel 12, featuring an interactive calendar, internal chat, and Stripe integration.
 
-## Funkcjonalności
+## Features
 
-- **Zarządzanie wizytami** - interaktywny kalendarz (FullCalendar), rezerwacja, przesuwanie wizyt drag & drop, wykrywanie konfliktów
-- **3 role użytkowników** - Administrator, Fizjoterapeuta (lekarz), Pacjent
-- **System płatności** - Stripe (karta, BLIK, Przelewy24), płatności gotówkowe, automatyczne generowanie faktur PDF
-- **Dokumentacja medyczna** - tworzenie dokumentów przez lekarzy, generowanie PDF, kontrola dostępu
-- **Komunikator** - wewnętrzny czat z załącznikami plików
-- **Powiadomienia** - w aplikacji i email
-- **Raporty** - statystyki wizyt, zarobków, płatności
-- **Harmonogramy lekarzy** - zarządzanie dostępnością, godziny pracy, blokowanie slotów
+- **Appointment Management** - interactive calendar (FullCalendar), booking, drag & drop rescheduling, conflict detection
+- **3 User Roles** - Administrator, Physiotherapist (doctor), Patient
+- **Payment System** - Stripe (card, BLIK, Przelewy24), cash payments, automatic PDF invoice generation
+- **Medical Documentation** - document creation by doctors, PDF generation, access control
+- **Internal Chat** - messaging system with file attachments
+- **Notifications** - in-app and email notifications
+- **Reports** - appointment statistics, earnings, payments
+- **Doctor Schedules** - availability management, working hours, slot blocking
 
-## Wymagania
+## Requirements
 
 - PHP 8.2+
 - MySQL 8.0+ / MariaDB
 - Composer
 - Node.js & NPM
-- Stripe account (dla płatności online)
+- Stripe account (for online payments)
 
-## Instalacja
+## Installation
 
 ```bash
-# Klonowanie repozytorium
+# Clone the repository
 git clone https://github.com/dj-kolkol2002/Rehamed-Reservation-Management-System-for-Hospital-Unit.git
 cd Rehamed-Reservation-Management-System-for-Hospital-Unit
 
-# Instalacja zależności
+# Install dependencies
 composer install
 npm install
 
-# Konfiguracja środowiska
+# Environment setup
 cp .env.example .env
 php artisan key:generate
 ```
 
-Edytuj `.env` i ustaw dane bazy danych oraz klucze Stripe:
+Edit `.env` and set your database credentials and Stripe keys:
 
 ```env
 DB_CONNECTION=mysql
@@ -52,56 +52,56 @@ STRIPE_SECRET=your_stripe_secret_key
 ```
 
 ```bash
-# Migracja bazy danych i seedowanie
+# Run migrations and seed the database
 php artisan migrate
 php artisan db:seed
 
-# Symlink storage
+# Create storage symlink
 php artisan storage:link
 
-# Build frontendu
+# Build frontend assets
 npm run build
 ```
 
-## Uruchomienie
+## Running the Application
 
 ```bash
-# Tryb deweloperski (serwer + Vite + kolejka + logi)
+# Development mode (server + Vite + queue + logs)
 composer dev
 
-# Lub ręcznie:
+# Or manually:
 php artisan serve
 npm run dev
 ```
 
-Aplikacja będzie dostępna pod `http://localhost:8000`.
+The application will be available at `http://localhost:8000`.
 
-## Stack technologiczny
+## Tech Stack
 
-| Warstwa | Technologia |
-|---------|-------------|
+| Layer | Technology |
+|-------|------------|
 | Backend | Laravel 12, PHP 8.2+ |
 | Frontend | Blade, TailwindCSS 4, Alpine.js |
-| Kalendarz | FullCalendar v6 |
-| Płatności | Stripe PHP SDK |
+| Calendar | FullCalendar v6 |
+| Payments | Stripe PHP SDK |
 | PDF | DomPDF |
-| Baza danych | MySQL / MariaDB |
+| Database | MySQL / MariaDB |
 | Build | Vite 6 |
 
-## Struktura projektu
+## Project Structure
 
 ```
 app/
-├── Http/Controllers/    # Kontrolery (kalendarz, rezerwacje, płatności, czat, raporty)
-├── Models/              # Modele Eloquent (User, Appointment, Payment, Invoice...)
-├── Services/            # Logika biznesowa (AvailabilityService, NotificationService)
-├── Mail/                # Szablony email
-└── Notifications/       # Powiadomienia
-resources/views/         # Szablony Blade
-database/migrations/     # Migracje bazy danych
-routes/web.php           # Routing aplikacji
+├── Http/Controllers/    # Controllers (calendar, reservations, payments, chat, reports)
+├── Models/              # Eloquent models (User, Appointment, Payment, Invoice...)
+├── Services/            # Business logic (AvailabilityService, NotificationService)
+├── Mail/                # Email templates
+└── Notifications/       # Notification classes
+resources/views/         # Blade templates
+database/migrations/     # Database migrations
+routes/web.php           # Application routing
 ```
 
-## Licencja
+## License
 
 MIT
